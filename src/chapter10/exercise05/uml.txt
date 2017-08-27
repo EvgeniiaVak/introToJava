@@ -1,0 +1,10 @@
+
+-elements: int[]
+-size: int
++StackOfIntegers()
++StackOfIntegers(capacity: int)
++empty(): boolean
++peek(): int
++push(value: int): void
++pop(): int
++getSize(): int
