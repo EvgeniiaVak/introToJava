@@ -66,14 +66,15 @@ public class Test {
 //        change(s, builder);
 //        System.out.println(s);
 //        System.out.println(builder);
+//
+//        String s = "SELECT".substring(0, 6).toUpperCase();
+//        System.out.println(s);
+//
+//        StringBuilder sb = new StringBuilder("   some    ");
 
-        String s = "SELECT".substring(0, 6).toUpperCase();
-        System.out.println(s);
 
-        StringBuilder sb = new StringBuilder("   some    ");
-
-
-
+        char a = '0' + 7;
+        System.out.println(a);
     }
 
 //    private static void change(String s, StringBuilder builder) {
