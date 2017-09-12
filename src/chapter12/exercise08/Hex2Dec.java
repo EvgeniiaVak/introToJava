@@ -1,4 +1,4 @@
-package chapter12.exercise06;
+package chapter12.exercise08;
 
 import java.util.Scanner;
 
@@ -9,16 +9,21 @@ public class Hex2Dec {
         System.out.print("Enter a hex number: ");
         String hex = input.nextLine();
 
-        System.out.println("The decimal value for hex number " + hex + " is " + hexToDecimal(hex.toUpperCase()));
+        try {
+            System.out.println("The decimal value for hex number " + hex + " is " + hexToDecimal(hex.toUpperCase()));
+        } catch (HexFormatException e) {
+            e.printStackTrace();
+        }
+
     }
 
-    private static int hexToDecimal(String hexString) {
+    private static int hexToDecimal(String hexString) throws HexFormatException{
         int decimal = 0;
 
         for (int i = 0; i < hexString.length(); i++) {
             char hexChar = hexString.charAt(i);
             if (!isHexSymbol(hexChar))
-                throw new NumberFormatException();
+                throw new HexFormatException();
 
             decimal = decimal * 16 + hexCharToDecimal(hexChar);
         }
