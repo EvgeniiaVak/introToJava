@@ -1,0 +1,3 @@
+package chapter78.exercise18;
+
+some other string
