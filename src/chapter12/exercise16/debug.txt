@@ -1,0 +1,4 @@
+apple, banana, juice, rooster, fish, jelly
+apple, banana, juice, rooster, fish, jelly
+banana, juice, rooster, apple, fish, jelly
+apple, banana, juice, rooster, fish, jelly
