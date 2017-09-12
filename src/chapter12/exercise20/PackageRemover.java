@@ -69,24 +69,21 @@ public class PackageRemover {
         //omit first line because it's the package statement
         scanner.nextLine();
 
-        // FIXME: 9/12/17
         //omit empty lines after the package statement
-        String nextValidLine = "";                      //unfortunately removes some extra lines
-        while (nextValidLine.length() == 0){            //even after this code finishes
+        String nextValidLine = "";
+        while (nextValidLine.isEmpty()) {
             nextValidLine = scanner.nextLine();
         }
+
         //append first not empty line
         builder.append(nextValidLine);
-        //end fixme
 
         //append the rest of the lines
         while (scanner.hasNext()) {
+            builder.append(System.getProperty("line.separator"));
 
             String line = scanner.nextLine();
             builder.append(line);
-
-            if (scanner.hasNext())
-                builder.append(System.getProperty("line.separator"));
         }
 
         return builder.toString();
