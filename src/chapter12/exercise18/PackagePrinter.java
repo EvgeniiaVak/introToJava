@@ -25,20 +25,7 @@ public class PackagePrinter {
                 System.exit(2);
             }
 
-            //build the package string
-            String[] dirs = path.split(File.separator);
-
-            String statement = "package ";
-            //as we build in IntelliJ IDEA we don't need "src", so i starts with 1
-            for (int i = 1; i < dirs.length; i++) {
-                statement += dirs[i];
-                if (i < dirs.length - 1) {
-                    statement += ".";
-                } else {
-                    statement += ";";
-                }
-            }
-            statement += "\n";
+            String statement = getStatement(path);
 
             //for every file that ends with .txt
             //(the exercise asks for .java but it's not possible, because we already have package statements)
@@ -48,7 +35,7 @@ public class PackagePrinter {
                 if (file.getName().endsWith(".txt")) {
                     //if file already has the statement do nothing
                     Scanner fileScanner = new Scanner(file);
-                    if (fileScanner.hasNext() && fileScanner.nextLine().trim().equals(statement.trim()))
+                    if (hasPackageStatement(statement, file))
                         continue;
 
                     //copy everything to append later
@@ -68,7 +55,30 @@ public class PackagePrinter {
         }
     }
 
-    private static String copyFromFile (File file) throws FileNotFoundException {
+    public static boolean hasPackageStatement(String statement, File file) throws FileNotFoundException {
+        Scanner scanner = new Scanner(file);
+        return scanner.hasNext() && scanner.nextLine().trim().equals(statement.trim());
+    }
+
+    public static String getStatement(String pathForDirectory) {
+        String[] dirs = pathForDirectory.split(File.separator);
+
+        String statement = "package ";
+        //as we build in IntelliJ IDEA we don't need "src", so i starts with 1
+        for (int i = 1; i < dirs.length; i++) {
+            statement += dirs[i];
+            if (i < dirs.length - 1) {
+                statement += ".";
+            } else {
+                statement += ";";
+            }
+        }
+        statement += "\n";
+
+        return statement;
+    }
+
+    public static String copyFromFile (File file) throws FileNotFoundException {
         StringBuilder builder = new StringBuilder();
         Scanner scanner = new Scanner(file);
 
