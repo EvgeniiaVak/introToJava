@@ -71,7 +71,7 @@ public class PackageRemover {
 
         //omit empty lines after the package statement
         String nextValidLine = "";
-        while (nextValidLine.isEmpty()) {
+        while (nextValidLine.isEmpty() && scanner.hasNext()) {
             nextValidLine = scanner.nextLine();
         }
 
