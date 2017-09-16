@@ -7,7 +7,12 @@ import java.util.Scanner;
 
 public class ZeroAdder {
     public static void main(String[] args) throws FileNotFoundException {
-        File dir = new File("src/chapter12/exercise27/data");
+        if (args.length == 0) {
+            System.out.println("usage: java RenameFiles <directory>");
+            System.exit(1);
+        }
+
+        File dir = new File(args[0]);
         File[] files = dir.listFiles();
 
         for (File file : files) {
@@ -22,18 +27,7 @@ public class ZeroAdder {
 
                 for (String word : words) {
                     //in every line search for an exercise name
-                    if (word.matches("Exercise(\\d)+_(\\d)+")) {
-                        String[] numberPartsOfExerciseName = word.split("(\\D)+");
-
-                        //check every number in the exercise name
-                        for (String number : numberPartsOfExerciseName) {
-                            //if it has only one digit
-                            if (number.length() == 1) {
-                                //replace it with the 0 and the digit
-                                word = word.replace(number, "0" + number);
-                            }
-                        }
-                    }
+                    word = padZeroesToExerciseName(word);
 
                     line.append(word);
                     line.append(" ");
@@ -49,5 +43,23 @@ public class ZeroAdder {
             writer.print(copy);
             writer.close();
         }
+    }
+
+    public static String padZeroesToExerciseName (String string) {
+        StringBuilder builder = new StringBuilder(string);
+
+        if (string.matches("Exercise(\\d)+_(\\d)+")) {
+
+            int firstSize = builder.indexOf("_") - 8;
+            if (firstSize == 1)
+                builder.insert(8, '0');
+
+            int secondSize = builder.length() - 1 - builder.indexOf("_");
+            if (secondSize == 1) {
+                builder.insert(builder.indexOf("_") + 1, '0');
+            }
+        }
+
+        return builder.toString();
     }
 }
