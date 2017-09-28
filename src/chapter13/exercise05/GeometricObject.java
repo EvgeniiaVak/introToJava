@@ -1,7 +1,7 @@
 package chapter13.exercise05;
 
 // GeometricObject.java: The abstract GeometricObject class
-public abstract class GeometricObject implements Comparable<GeometricObject> {
+public abstract class GeometricObject implements Comparable<GeometricObject>, Cloneable{
   private String color = "white";
   private boolean filled;
 
@@ -42,7 +42,17 @@ public abstract class GeometricObject implements Comparable<GeometricObject> {
   /**Abstract method getPerimeter*/
   public abstract double getPerimeter();
 
-  @Override
+    @Override
+    public GeometricObject clone() {
+        try {
+            return (GeometricObject) super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
   public int compareTo(GeometricObject o) {
     return Double.compare(this.getArea(), o.getArea());
   }
