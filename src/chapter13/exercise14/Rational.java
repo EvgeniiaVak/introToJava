@@ -1,6 +1,6 @@
 package chapter13.exercise14;
 
-// Rational.java: Define a rational number and its associated
+// BigRational.java: Define a rational number and its associated
 // operations such as add, subtract, multiply, and divide
 public class Rational extends Number implements Comparable<Rational> {
     // Data fields for numerator and denominator
