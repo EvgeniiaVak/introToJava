@@ -13,8 +13,21 @@ public class BigRational extends Number implements Comparable<BigRational> {
         this("0", "1");
     }
 
-    /** Construct a rational with specified numerator and denominator */
-    public BigRational(String numerator, String denominator) {
+    /** Construct a rational with specified numerator and denominator,
+     * throws IllegalArgumentException if denominator is zero
+     * or if there are less or more than 1 or 2 numbers*/
+    public BigRational(String... numbers) {
+        String numerator, denominator;
+
+        if (numbers.length == 1) {
+            numerator = numbers[0];
+            denominator = "1";
+        } else if (numbers.length == 2) {
+            numerator = numbers[0];
+            denominator = numbers[1];
+        } else {
+            throw new IllegalArgumentException();
+        }
         if (denominator.equals("0")) throw new IllegalArgumentException();
 
         BigInteger gcd = new BigInteger(numerator).gcd(new BigInteger(denominator));
