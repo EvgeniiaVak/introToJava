@@ -1,6 +1,7 @@
 package chapter13.exercise15;
 
 import java.math.BigInteger;
+import java.util.Arrays;
 
 // BigRational.java: Define a rational number and its associated
 // operations such as add, subtract, multiply, and divide
@@ -82,6 +83,18 @@ public class BigRational extends Number implements Comparable<BigRational> {
         BigInteger n = r[0].multiply(secondBigRational.getDenominator());
         BigInteger d = r[1].multiply(secondBigRational.r[0]);
         return new BigRational(n.toString(), d.toString());
+    }
+
+    public static BigRational valueOf(double d) {
+        String[] parts = String.valueOf(d).split("\\.");
+        if (parts.length == 1)
+            return new BigRational(parts[0]);
+
+        BigRational whole = new BigRational(parts[0]);
+        String divider = "" + (int) Math.pow(10, parts[1].length());
+        BigRational rest = new BigRational(parts[1], divider);
+
+        return whole.add(rest);
     }
 
     @Override

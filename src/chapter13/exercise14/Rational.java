@@ -85,7 +85,7 @@ public class Rational extends Number implements Comparable<Rational> {
 
     /** Override the equals method in the Object class */
     public boolean equals(Object parm1) {
-        return parm1 instanceof Rational && (this.subtract((Rational)(parm1))).getNumerator() == 0;
+        return (parm1 instanceof Rational) && ((this.subtract((Rational) (parm1))).getNumerator() == 0);
     }
 
     /** Override the hashCode method in the Object class */
@@ -115,10 +115,11 @@ public class Rational extends Number implements Comparable<Rational> {
 
     @Override
     public int compareTo(Rational o) {
-        if ((this.subtract((Rational)o)).getNumerator() > 0)
+        if ((this.subtract((Rational)o)).getNumerator() > 0) {
             return 1;
-        else if ((this.subtract((Rational)o)).getNumerator() < 0)
+        } else if ((this.subtract((Rational)o)).getNumerator() < 0) {
             return -1;
+        }
         else
             return 0;
     }

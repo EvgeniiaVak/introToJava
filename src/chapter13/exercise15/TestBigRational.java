@@ -13,5 +13,7 @@ public class TestBigRational {
         System.out.println(a.multiply(b));
         System.out.println(a.divide(b));
 
+        System.out.println(BigRational.valueOf(3.25));
+
     }
 }
