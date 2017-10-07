@@ -90,11 +90,10 @@ public class BigRational extends Number implements Comparable<BigRational> {
         if (parts.length == 1)
             return new BigRational(parts[0]);
 
-        BigRational whole = new BigRational(parts[0]);
-        String divider = "" + (int) Math.pow(10, parts[1].length());
-        BigRational rest = new BigRational(parts[1], divider);
+        String numerator = parts[0] + parts[1];
+        String denominator = "" + (int) Math.pow(10, parts[1].length());
 
-        return whole.add(rest);
+        return new BigRational(numerator, denominator);
     }
 
     @Override
