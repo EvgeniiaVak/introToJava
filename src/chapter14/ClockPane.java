@@ -98,9 +98,9 @@ public class ClockPane extends Pane {
   }
   
   /** Paint the clock */
-  private void paintClock() {
+  protected void paintClock() {
     // Initialize clock parameters
-    double clockRadius = Math.min(w, h) * 0.8 * 0.5;
+    double clockRadius = w / 2;//Math.min(w, h) * 0.8 * 0.5;
     double centerX = w / 2;
     double centerY = h / 2;
 
@@ -108,10 +108,10 @@ public class ClockPane extends Pane {
     Circle circle = new Circle(centerX, centerY, clockRadius);
     circle.setFill(Color.WHITE);
     circle.setStroke(Color.BLACK);
-    Text t1 = new Text(centerX - 5, centerY - clockRadius + 12, "12");
-    Text t2 = new Text(centerX - clockRadius + 3, centerY + 5, "9");
-    Text t3 = new Text(centerX + clockRadius - 10, centerY + 3, "3");
-    Text t4 = new Text(centerX - 3, centerY + clockRadius - 3, "6");
+    Text t1 = new Text(centerX - 5, centerY - clockRadius + 22, "12");
+    Text t2 = new Text(centerX - clockRadius + 13, centerY + 5, "9");
+    Text t3 = new Text(centerX + clockRadius - 20, centerY + 3, "3");
+    Text t4 = new Text(centerX - 3, centerY + clockRadius - 13, "6");
     
     // Draw second hand
     double sLength = clockRadius * 0.8;
