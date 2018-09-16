@@ -58,12 +58,14 @@ public class MyExpressionEvaluator {
 
                 //final operator evaluation
                 process(Set.of("*", "/", "-", "+", "(", ")"));
+                if (!operands.isEmpty()) {
+                    throw new IllegalArgumentException();
+                }
+                System.out.printf("result is [%s]%n%n", operands.pop());
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-
-            System.out.printf("result is [%s]%n%n", operands.pop());
 
         }
 
