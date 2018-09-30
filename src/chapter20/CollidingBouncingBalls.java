@@ -51,7 +51,7 @@ public class CollidingBouncingBalls extends Application {
 
         // Create a scene and place the pane in the stage
         Scene scene = new Scene(pane, 250, 150);
-        primaryStage.setTitle("MultipleBounceBall"); // Set the stage title
+        primaryStage.setTitle(getClass().getSimpleName()); // Set the stage title
         primaryStage.setScene(scene); // Place the scene in the stage
         primaryStage.show(); // Display the stage
     }
