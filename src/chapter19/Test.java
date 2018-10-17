@@ -1,41 +1,44 @@
 package chapter19;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Test {
     public static void main(String[] args) {
-        ArrayList superStrings = new ArrayList();
-        superStrings.add("some");
-        superStrings.add(new Object());
-        print(superStrings);
-        printWithWildCards(superStrings);
+        GrandParent grandParent = new GrandParent();
+        Parent parent = new Parent();
+        Child child = new Child();
 
-        ArrayList withNumbers = new ArrayList();
-        withNumbers.add("other");
-        Object object = new Integer(1);
-        Integer integerObject = new Integer(2);
-        Object objec2 = new String("some third");
-        withNumbers.add(object);
-        withNumbers.add(objec2);
-        print(withNumbers);
-        printWithWildCards(withNumbers);
-    }
+        wildcard(new Holder<>(parent));
+//        wildcardExtendsParent(new Holder<>(grandParent));  - does not compile
+        wildcardExtendsParent(new Holder<>(parent));
+        wildcardSuperParent(new Holder<>(child));  //compiles for some reason!
+//        extendsParentGeneric(grandParent);  - yey! doesn't compile
+        extendsParentGeneric(parent);
+        extendsParentGeneric(child);
 
-    private static void wildcardMethod(ArrayList<?> some) {
+        wildcardSuperParent(new ExtendParentHolder<>(parent));
+        wildcardSuperParent(new ExtendParentHolder<>(child));
+//        wildcardSuperParent(new ExtendParentHolder<>(grandParent));
 
     }
 
 
-    private static <T extends String> void print(List<T> superStringList) {
-        System.out.println(superStringList);
+
+    private static void wildcard(Holder<?> some) {
+        System.out.print("wildcard: ");
+        System.out.println(some);
     }
 
-    private static void printWithWildCards(List<? super String> superStringList) {
-        System.out.println(superStringList);
+    private static void wildcardSuperParent(Holder<? super Parent> some) {
+        System.out.print("wildcardSuperParent: ");
+        System.out.println(some);
     }
 
-    public static <T> void staticGenericMessage(T someObject) {
-        System.out.println(someObject);
+    private static void wildcardExtendsParent(Holder<? extends Parent> some) {
+        System.out.print("wildcardExtendsParent: ");
+        System.out.println(some);
+    }
+
+    private static <T extends Parent> void extendsParentGeneric(T parent) {
+        System.out.print("extendsParentGeneric: ");
+        System.out.println(parent);
     }
 }
